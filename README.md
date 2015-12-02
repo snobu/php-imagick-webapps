@@ -10,3 +10,4 @@ PECL module: `php_imagick-3.3.0rc2-5.6-nts-vc11-x86.zip` from http://windows.php
 
 Binaries: `ImageMagick-6.8.8-1-Q16-x86-dll.exe` from http://ftp.sunet.se/pub/multimedia/graphics/ImageMagick/binaries/
 
+`applicationHost.xdt` - XML transform responsible for adding `d:\home\site\ImageMagick` to PATH.
