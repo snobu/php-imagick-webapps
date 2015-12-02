@@ -4,7 +4,7 @@ php_imagick.dll and binaries
 ..for PHP 5.6 (x86, Non Thread Safe) under Azure App Services Web Apps platform.
 
 PECL module: `php_imagick-3.3.0rc2-5.6-nts-vc11-x86.zip`, API version: `20131226` - from http://windows.php.net/downloads/pecl/releases/imagick/3.3.0rc2/
-![api_ver](https://raw.githubusercontent.com/snobu/php-imagick-webapps/master/screenshots-from-portal/imagick_api_ver.png "api_ver")
+>![api_ver](https://raw.githubusercontent.com/snobu/php-imagick-webapps/master/screenshots-from-portal/imagick_api_ver.png "api_ver")
 
 
 >Imagick is a native php extension to create and modify images using the ImageMagick API.
