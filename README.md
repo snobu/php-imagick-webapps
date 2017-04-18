@@ -1,45 +1,54 @@
-php_imagick.dll and binaries tested *WORKING* on Azure App Service (Windows worker)
-----------------------------
+How to get `php_imagick` up and running on Azure App Service with Windows web workers
+-------------------------------------------------------------------------------------
+
+**DISCLAIMER:<br>
+If this totally and permanently bricks your site, don't blame me.**
+
 
 ## UPDATE for PHP 7.0, VC14, x86, Non Thread Safe (NTS)
 
-- Get the latest *stable* php_imagick.dll from here - https://pecl.php.net/package/imagick (3.4.3-stable used in this guide).
-- Copy all `CORE_RL_*` files to `d:\home\site\ImageMagick\`
-- Copy `php_imagick.dll` to `d:\home\site\ext\`
-- Add `MAGICK_CODER_MODULE_PATH` Application Setting:
+* Get the latest *stable* php_imagick.dll from here - https://pecl.php.net/package/imagick (3.4.3-stable used in this guide).
+
+* Copy all `CORE_RL_*` files to `d:\home\site\ImageMagick\`
+
+* Copy `php_imagick.dll` to `d:\home\site\ext\`
+
+* Copy `applicationHost.xdt` (it's in this repo under `/site`) to `d:\home\site`. That's the XML transform responsible for adding `d:\home\site\ImageMagick` to **PATH**.
+
+* Add `MAGICK_CODER_MODULE_PATH` Application Setting:
 ```
      Name: MAGICK_CODER_MODULE_PATH
     Value: d:\home\site\ImageMagick
 ```
 
-- Add `MAGICK_HOME` Application Setting:
+* Add `MAGICK_HOME` Application Setting:
 ```
      Name: MAGICK_HOME
     Value: d:\home\site\ImageMagick
 ```
 
-- Add `PHP_EXTENSIONS` Application Setting (apparently PHP 7.0 ignores PHP_INI_SCAN_DIR for some reason):
+* Add `PHP_EXTENSIONS` Application Setting (apparently PHP 7.0 ignores PHP_INI_SCAN_DIR for some reason):
 ```    
      Name: PHP_EXTENSIONS
     Value: d:\home\site\ext\php_imagick.dll
 ```
+
 This is what you should have now:
 
 ![image](https://cloud.githubusercontent.com/assets/6472374/25129762/20026b0e-2448-11e7-862a-441c47c7a558.png)
 
-- Restart the Web App
+* Restart the Web App
 
-- At this point `phpinfo()` should return a `imagick` module section. Get the ImageMagick version that `php_imagick.dll` was built against:
+* At this point `phpinfo()` should return a `imagick` module section. Get the ImageMagick version that `php_imagick.dll` was built against:
 
 ## ![image](https://cloud.githubusercontent.com/assets/6472374/25127940/802a8956-2440-11e7-9b68-60e7e678a49b.png)
 
-So our dependency here is on **ImageMagick-6.9.3-7-Q16-x86-dll.exe**.
-Download and extract (always get the **-x86-dlls.exe** one) - http://ftp.icm.edu.pl/packages/ImageMagick/binaries/ImageMagick-6.9.3-7-Q16-x86-dll.exe
+We take a dependency here on **ImageMagick-6.9.3-7-Q16-x86-dll.exe**.
+Download and extract (always get the one ending in **-x86-dll.exe**) - http://ftp.icm.edu.pl/packages/ImageMagick/binaries/ImageMagick-6.9.3-7-Q16-x86-dll.exe
 
-- Copy the `IM_MOD*` and `FILTER*` DLLs from `modules\` to `d:\home\site\ImageMagick` (don't copy the folder structure, just the DLLs, you should have a flat structure in `d:\home\site\ImageMagick\` with just a bunch of DLLs).
-- Copy `applicationHost.xdt` to `d:\home\site`. That's the XML transform responsible for adding `d:\home\site\ImageMagick` to **PATH**.
-- Restart the Web App
-- It should now work, test with this snippet:
+* Copy the `IM_MOD*` and `FILTER*` DLLs from `modules\` to `d:\home\site\ImageMagick` (don't copy the folder structure, just the DLLs, you should have a flat structure in `d:\home\site\ImageMagick\` with just a bunch of DLLs).
+
+* It should now work, test with this snippet:
 
 ```php
 <?php
@@ -81,7 +90,7 @@ Download and extract (always get the **-x86-dlls.exe** one) - http://ftp.icm.edu
 
 ![image](https://cloud.githubusercontent.com/assets/6472374/25129674/ae189d10-2447-11e7-9a5b-d75ee20653db.png)
 
-NOTE: `phpinfo()` should now report a bunch of formats being supported:
+**NOTE:** `phpinfo()` should now report a bunch of formats being supported:
 
 ![image](https://cloud.githubusercontent.com/assets/6472374/25130247/2de1f102-244a-11e7-8e87-800f950ab5a5.png)
 
