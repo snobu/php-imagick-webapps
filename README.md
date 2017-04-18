@@ -13,7 +13,7 @@ If this totally and permanently bricks your site, don't blame me.**
 
 * Copy `php_imagick.dll` to `d:\home\site\ext\`
 
-* Copy `applicationHost.xdt` (it's in this repo under `/site`) to `d:\home\site`. That's the XML transform responsible for adding `d:\home\site\ImageMagick` to **PATH**.
+* Copy `applicationHost.xdt` (it's in this repo under `/site`) to `d:\home\site`. That's the XML transform responsible for adding `d:\home\site\ImageMagick` to **PATH**. Edit if you're using your own custom paths.
 
 * Add `MAGICK_CODER_MODULE_PATH` Application Setting:
 ```
