@@ -3,7 +3,7 @@ php_imagick.dll and binaries
 
 ## UPDATE for PHP 7.0 x86 Non Thread Safe (NTS) on Azure App Service
 
-- Get the latest *stable* php_imagick.dll from here - https://pecl.php.net/package/imagick
+- Get the latest *stable* php_imagick.dll from here - https://pecl.php.net/package/imagick (3.4.3-stable used in this guide).
 - Copy all `CORE_RL_*` files to `d:\home\site\ImageMagick\`
 - Copy `php_imagick.dll` to `d:\home\site\ext\`
 - Add `MAGICK_CODER_MODULE_PATH` **Application Setting**:
