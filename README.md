@@ -1,7 +1,76 @@
 php_imagick.dll and binaries
 ----------------------------
 
-..for PHP 5.6 (x86, Non Thread Safe) under Azure App Services Web Apps platform.
+## UPDATE for PHP 7.0 x86 Non Thread Safe (NTS) on Azure App Service
+
+- Get the latest *stable* php_imagick.dll from here - https://pecl.php.net/package/imagick
+- Copy all `CORE_RL_*` files to `d:\home\site\ImageMagick\`
+- Copy `php_imagick.dll` to `d:\home\site\ext\`
+- Add `MAGICK_CODER_MODULE_PATH` **Application Setting**:
+```
+     Name: MAGICK_CODER_MODULE_PATH
+    Value: d:\home\site\ImageMagick
+```
+
+- Add `PHP_EXTENSIONS` **Application Setting** (apparently PHP 7.0 ignores PHP_INI_SCAN_DIR for some reason):
+```    
+     Name: PHP_EXTENSIONS
+    Value: d:\home\site\ext\php_imagick.dll
+```
+- At this point `phpinfo()` should return a `imagick` module section. Get the ImageMagick version that `php_imagick.dll` was built against:
+
+## ![image](https://cloud.githubusercontent.com/assets/6472374/25127940/802a8956-2440-11e7-9b68-60e7e678a49b.png)
+
+So our dependency here is on **ImageMagick-6.9.3-7-Q16-x86-dll.exe**.
+Download and extract (always get the **-x86-dlls.exe** one) - http://ftp.icm.edu.pl/packages/ImageMagick/binaries/ImageMagick-6.9.3-7-Q16-x86-dll.exe
+
+- Copy the `IM_MOD*` and `FILTER*` DLLs from `modules\` to `d:\home\site\ImageMagick` (don't copy the folders too, just the DLLs).
+- Restart the Web App
+- It should now work, test with this snippet:
+
+```php
+<?php
+  /* Create a new imagick object */
+  $im = new Imagick();
+  /* Create new image. This will be used as fill pattern */
+  $im->newPseudoImage(200, 200, "plasma:fractal");
+  /* Create imagickdraw object */
+  $draw = new ImagickDraw();
+  /* Start a new pattern called "gradient" */
+  $draw->pushPattern('gradient', 0, 0, 200, 200);
+  /* Composite the gradient on the pattern */
+  $draw->composite(Imagick::COMPOSITE_OVER, 0, 0, 200, 200, $im);
+  /* Close the pattern */
+  $draw->popPattern();
+  /* Use the pattern called "gradient" as the fill */
+  $draw->setFillPatternURL('#gradient');
+  /* Set font size */
+  $draw->setFontSize(36);
+  /* Annotate some text */
+  $draw->annotation(20, 50, "What do you mean this works and we still have daylight left???!!?");
+  /* Create a new canvas object and a white image */
+  $canvas = new Imagick();
+  $canvas->newImage(1200, 70, "black");
+  /* Draw the ImagickDraw on to the canvas */
+  $canvas->drawImage($draw);
+  /* 1px black border around the image */
+  $canvas->borderImage('black', 1, 1);
+  /* Set the format to PNG */
+  $canvas->setImageFormat('png');
+
+  /* Output the image */
+  header("Content-Type: image/png");
+  echo $canvas;
+?>
+```
+
+### Result:
+
+![image](https://cloud.githubusercontent.com/assets/6472374/25129674/ae189d10-2447-11e7-9a5b-d75ee20653db.png)
+
+
+
+## ..for PHP 5.6 (x86, Non Thread Safe)
 
 PECL module: `php_imagick-3.3.0rc2-5.6-nts-vc11-x86.zip`, API version: `20131226` - from http://windows.php.net/downloads/pecl/releases/imagick/3.3.0rc2/
 >![api_ver](https://raw.githubusercontent.com/snobu/php-imagick-webapps/master/screenshots-from-portal/imagick_api_ver.png "api_ver")
