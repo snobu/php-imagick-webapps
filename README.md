@@ -6,19 +6,19 @@ php_imagick.dll and binaries tested *WORKING* on Azure App Service
 - Get the latest *stable* php_imagick.dll from here - https://pecl.php.net/package/imagick (3.4.3-stable used in this guide).
 - Copy all `CORE_RL_*` files to `d:\home\site\ImageMagick\`
 - Copy `php_imagick.dll` to `d:\home\site\ext\`
-- Add `MAGICK_CODER_MODULE_PATH` **Application Setting**:
+- Add `MAGICK_CODER_MODULE_PATH` Application Setting:
 ```
      Name: MAGICK_CODER_MODULE_PATH
     Value: d:\home\site\ImageMagick
 ```
 
-- Add 'MAGICK_HOME' **Application Setting**:
+- Add 'MAGICK_HOME' Application Setting:
 ```
      Name: MAGICK_HOME
     Value: d:\home\site\ImageMagick
 ```
 
-- Add `PHP_EXTENSIONS` **Application Setting** (apparently PHP 7.0 ignores PHP_INI_SCAN_DIR for some reason):
+- Add `PHP_EXTENSIONS` Application Setting (apparently PHP 7.0 ignores PHP_INI_SCAN_DIR for some reason):
 ```    
      Name: PHP_EXTENSIONS
     Value: d:\home\site\ext\php_imagick.dll
@@ -27,6 +27,7 @@ This is what you should have now:
 
 ![image](https://cloud.githubusercontent.com/assets/6472374/25129762/20026b0e-2448-11e7-862a-441c47c7a558.png)
 
+- Restart the Web App
 
 - At this point `phpinfo()` should return a `imagick` module section. Get the ImageMagick version that `php_imagick.dll` was built against:
 
