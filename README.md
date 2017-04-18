@@ -1,7 +1,7 @@
-php_imagick.dll and binaries
+php_imagick.dll and binaries tested *WORKING* on Azure App Service
 ----------------------------
 
-## UPDATE for PHP 7.0 x86 Non Thread Safe (NTS) on Azure App Service
+## UPDATE for PHP 7.0, VC14, x86, Non Thread Safe (NTS)
 
 - Get the latest *stable* php_imagick.dll from here - https://pecl.php.net/package/imagick (3.4.3-stable used in this guide).
 - Copy all `CORE_RL_*` files to `d:\home\site\ImageMagick\`
@@ -12,11 +12,22 @@ php_imagick.dll and binaries
     Value: d:\home\site\ImageMagick
 ```
 
+- Add 'MAGICK_HOME' **Application Setting**:
+```
+     Name: MAGICK_HOME
+    Value: d:\home\site\ImageMagick
+```
+
 - Add `PHP_EXTENSIONS` **Application Setting** (apparently PHP 7.0 ignores PHP_INI_SCAN_DIR for some reason):
 ```    
      Name: PHP_EXTENSIONS
     Value: d:\home\site\ext\php_imagick.dll
 ```
+This is what you should have now:
+
+![image](https://cloud.githubusercontent.com/assets/6472374/25129762/20026b0e-2448-11e7-862a-441c47c7a558.png)
+
+
 - At this point `phpinfo()` should return a `imagick` module section. Get the ImageMagick version that `php_imagick.dll` was built against:
 
 ## ![image](https://cloud.githubusercontent.com/assets/6472374/25127940/802a8956-2440-11e7-9b68-60e7e678a49b.png)
@@ -24,7 +35,8 @@ php_imagick.dll and binaries
 So our dependency here is on **ImageMagick-6.9.3-7-Q16-x86-dll.exe**.
 Download and extract (always get the **-x86-dlls.exe** one) - http://ftp.icm.edu.pl/packages/ImageMagick/binaries/ImageMagick-6.9.3-7-Q16-x86-dll.exe
 
-- Copy the `IM_MOD*` and `FILTER*` DLLs from `modules\` to `d:\home\site\ImageMagick` (don't copy the folders too, just the DLLs).
+- Copy the `IM_MOD*` and `FILTER*` DLLs from `modules\` to `d:\home\site\ImageMagick` (don't copy the folder structure, just the DLLs, you should have a flat structure in `d:\home\site\ImageMagick\` with just a bunch of DLLs).
+- Copy `applicationHost.xdt` to `d:\home\site`. That's the XML transform responsible for adding `d:\home\site\ImageMagick` to **PATH**.
 - Restart the Web App
 - It should now work, test with this snippet:
 
@@ -70,16 +82,12 @@ Download and extract (always get the **-x86-dlls.exe** one) - http://ftp.icm.edu
 
 
 
-## ..for PHP 5.6 (x86, Non Thread Safe)
+## For PHP 5.6, VC11, x86, Non Thread Safe
 
-PECL module: `php_imagick-3.3.0rc2-5.6-nts-vc11-x86.zip`, API version: `20131226` - from http://windows.php.net/downloads/pecl/releases/imagick/3.3.0rc2/
->![api_ver](https://raw.githubusercontent.com/snobu/php-imagick-webapps/master/screenshots-from-portal/imagick_api_ver.png "api_ver")
+Follow the PHP 7.0 guide, just match the right binaries.
 
+Tested working:
 
->Imagick is a native php extension to create and modify images using the ImageMagick API.
->This extension requires ImageMagick version 6.2.4+ and PHP 5.1.3+.
->IMPORTANT: Version 2.x API is not compatible with earlier versions.
+- PECL module: `php_imagick-3.3.0rc2-5.6-nts-vc11-x86.zip` - http://windows.php.net/downloads/pecl/releases/imagick/3.3.0rc2/
 
-Binaries: `ImageMagick-6.8.8-1-Q16-x86-dll.exe` from http://ftp.icm.edu.pl/packages/ImageMagick/binaries/
-
-`applicationHost.xdt` - XML transform responsible for adding `d:\home\site\ImageMagick` to PATH.
+- ImageMagick Binaries: `ImageMagick-6.8.8-1-Q16-x86-dll.exe` - http://ftp.icm.edu.pl/packages/ImageMagick/binaries/
