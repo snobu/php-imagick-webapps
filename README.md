@@ -1,4 +1,4 @@
-php_imagick.dll and binaries tested *WORKING* on Azure App Service
+php_imagick.dll and binaries tested *WORKING* on Azure App Service (Windows worker)
 ----------------------------
 
 ## UPDATE for PHP 7.0, VC14, x86, Non Thread Safe (NTS)
