@@ -12,7 +12,7 @@ php_imagick.dll and binaries tested *WORKING* on Azure App Service
     Value: d:\home\site\ImageMagick
 ```
 
-- Add 'MAGICK_HOME' Application Setting:
+- Add `MAGICK_HOME` Application Setting:
 ```
      Name: MAGICK_HOME
     Value: d:\home\site\ImageMagick
