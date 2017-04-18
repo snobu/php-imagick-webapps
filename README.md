@@ -80,6 +80,9 @@ Download and extract (always get the **-x86-dlls.exe** one) - http://ftp.icm.edu
 
 ![image](https://cloud.githubusercontent.com/assets/6472374/25129674/ae189d10-2447-11e7-9a5b-d75ee20653db.png)
 
+NOTE: `phpinfo()` should now report a bunch of formats being supported:
+
+![image](https://cloud.githubusercontent.com/assets/6472374/25130247/2de1f102-244a-11e7-8e87-800f950ab5a5.png)
 
 
 ## For PHP 5.6, VC11, x86, Non Thread Safe
