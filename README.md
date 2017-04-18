@@ -104,3 +104,6 @@ Tested working:
 - PECL module: `php_imagick-3.3.0rc2-5.6-nts-vc11-x86.zip` - http://windows.php.net/downloads/pecl/releases/imagick/3.3.0rc2/
 
 - ImageMagick Binaries: `ImageMagick-6.8.8-1-Q16-x86-dll.exe` - http://ftp.icm.edu.pl/packages/ImageMagick/binaries/
+
+## TO DO:
+This really needs to be packaged up as a [Site Extension](https://www.siteextensions.net/packages). Anyone?
