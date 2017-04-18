@@ -88,7 +88,7 @@ Download and extract (always get the one ending in **-x86-dll.exe**) - http://ft
 
 ### Result:
 
-![image](https://cloud.githubusercontent.com/assets/6472374/25129674/ae189d10-2447-11e7-9a5b-d75ee20653db.png)
+![image](https://cloud.githubusercontent.com/assets/6472374/25145036/95ec7b7c-2478-11e7-818c-6bebfd391e03.png)
 
 **NOTE:** `phpinfo()` should now report a bunch of formats being supported:
 
