@@ -44,7 +44,7 @@ This is what you should have now:
 ## ![image](https://cloud.githubusercontent.com/assets/6472374/25127940/802a8956-2440-11e7-9b68-60e7e678a49b.png)
 
 We take a dependency here on **ImageMagick-6.9.3-7-Q16-x86-dll.exe**.
-Download and extract (always get the one ending in **-x86-dll.exe**) - http://ftp.icm.edu.pl/packages/ImageMagick/binaries/ImageMagick-6.9.3-7-Q16-x86-dll.exe
+Download and extract (always get the one ending in **-x86-dll.exe**) - http://ftp.icm.edu.pl/packages/ImageMagick/binaries/ImageMagick-6.9.3-7-Q16-x86-dll.exe (i'm using _extract_ loosely here because you actually have to INSTALL that InstallShield package on your machine to get to the DLLs. InstallShield has no in-place extract. Small price to pay though.)
 
 * Copy the `IM_MOD*` and `FILTER*` DLLs from `modules\` to `d:\home\site\ImageMagick` (don't copy the folder structure, just the DLLs, you should have a flat structure in `d:\home\site\ImageMagick\` with just a bunch of DLLs).
 
