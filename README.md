@@ -4,6 +4,8 @@ How to get `php_imagick` up and running on Azure App Service with Windows web wo
 **DISCLAIMER:<br>
 If this totally and permanently bricks your site, don't blame me.**
 
+## READ THIS FIRST:
+At this point we strongly encourage looking at ![Web Apps for Containers](https://azure.microsoft.com/en-us/services/app-service/containers/) for ImageMagick based workloads. If for one reason or another you can't use that, read on.
 
 ## UPDATE for PHP 7.0, VC14, x86, Non Thread Safe (NTS)
 
@@ -106,4 +108,5 @@ Tested working:
 - ImageMagick Binaries: `ImageMagick-6.8.8-1-Q16-x86-dll.exe` - http://ftp.icm.edu.pl/packages/ImageMagick/binaries/
 
 ## TO DO:
-This really needs to be packaged up as a [Site Extension](https://www.siteextensions.net/packages). Anyone?
+~~This really needs to be packaged up as a [Site Extension](https://www.siteextensions.net/packages). Anyone?~~
+Scratch that, ![Mangesh Sangapu](https://blogs.msdn.microsoft.com/azureossds/2015/12/07/php-imagemagick-on-azure-web-apps/) did it. The Site Extension is available here: https://www.siteextensions.net/packages/PHP7_64BIT_IMAGICK_6937/
