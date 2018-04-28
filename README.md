@@ -7,6 +7,20 @@ If this totally and permanently bricks your site, don't blame me.**
 ## READ THIS FIRST:
 At this point we strongly encourage looking at [Web Apps for Containers](https://azure.microsoft.com/en-us/services/app-service/containers/) for ImageMagick based workloads. If for one reason or another you can't use that, read on.
 
+## Extension and ImageMagick
+Find suitable PHP extension and ImageMagick library dll's from 
+
+https://mlocati.github.io/articles/php-windows-imagick.html
+
+## UPDATE for PHP 7.2, VC15, x64, Non Thread Safe (NTS)
+Tested working:
+
+- PECL module: `php_imagick-3.4.3-7.2-nts-vc15-x64.zip` - http://windows.php.net/downloads/pecl/snaps/imagick/3.4.3/
+
+- ImageMagick Binaries: `ImageMagick-7.0.7-11-vc15-x64.zip` - http://windows.php.net/downloads/pecl/deps/
+
+Follow the PHP 7.0 guide, just match the right binaries.
+
 ## UPDATE for PHP 7.0, VC14, x86, Non Thread Safe (NTS)
 
 * Get the latest *stable* php_imagick.dll from here - https://pecl.php.net/package/imagick (3.4.3-stable used in this guide).
@@ -108,5 +122,6 @@ Tested working:
 - ImageMagick Binaries: `ImageMagick-6.8.8-1-Q16-x86-dll.exe` - http://ftp.icm.edu.pl/packages/ImageMagick/binaries/
 
 ## TO DO:
-~~This really needs to be packaged up as a [Site Extension](https://www.siteextensions.net/packages). Anyone?~~
+* ~~This really needs to be packaged up as a [Site Extension](https://www.siteextensions.net/packages). Anyone?~~
 Scratch that, [Mangesh Sangapu](https://blogs.msdn.microsoft.com/azureossds/2015/12/07/php-imagemagick-on-azure-web-apps/) did it. The Site Extension is available here: https://www.siteextensions.net/packages/PHP7_64BIT_IMAGICK_6937/
+* A magic extension that handle dependencies in some neat way. Anyone?
