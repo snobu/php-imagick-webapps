@@ -1,3 +1,6 @@
+# WARNING:
+## The stuff below is now 2+ years old, no clue if anything still works that way. I highly recommend you look at a Docker image instead that has the imagemagick dependencies (via `apt install php-imagick` or something along these lines).
+
 How to get `php_imagick` up and running on Azure App Service with Windows web workers
 -------------------------------------------------------------------------------------
 
