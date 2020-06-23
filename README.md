@@ -15,6 +15,16 @@ Find suitable PHP extension and ImageMagick library dll's from
 
 https://mlocati.github.io/articles/php-windows-imagick.html
 
+## UPDATE for PHP 7.4, VC15, x64, Non Thread Safe (NTS)
+Tested working:
+
+- PECL module: `php_imagick-3.4.3-7.2-nts-vc15-x64.zip` - http://windows.php.net/downloads/pecl/releases/imagick/3.4.4/php_imagick-3.4.4-7.4-nts-vc15-x64.zip
+
+- ImageMagick Binaries: `ImageMagick-7.0.7-11-vc15-x64.zip` - http://windows.php.net/downloads/pecl/deps/ImageMagick-7.0.7-11-vc15-x64.zip
+
+Follow the PHP 7.0 guide, just match the right binaries.
+
+
 ## UPDATE for PHP 7.2, VC15, x64, Non Thread Safe (NTS)
 Tested working:
 
